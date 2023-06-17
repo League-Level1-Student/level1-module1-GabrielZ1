@@ -7,7 +7,7 @@ public class PopcornMaker {
 		Microwave micro = new Microwave();
 		
 		
-		String flavor = JOptionPane.showInputDialog("What flavor popcorn do you want?");
+		String flavor = JOptionPane.showInputDialog("What flavor of popcorn do you want?");
 		String cookTimeString = JOptionPane.showInputDialog("How long should we put the popcorn in the microwave? (minutes)");		
 		
 		int cookTimeInt = Integer.parseInt(cookTimeString);
@@ -19,7 +19,7 @@ public class PopcornMaker {
 		micro.putInMicrowave(pop);
 		micro.setTime(cookTimeInt);
 
-
+		micro.startMicrowave();
 
 
 

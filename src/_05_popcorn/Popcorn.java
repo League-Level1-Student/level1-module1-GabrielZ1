@@ -35,7 +35,7 @@ class Microwave {
 		if (thingToBeCooked == null) {
 			System.out.println("Microwave says: there's nothing in the microwave!");
 		} else {
-			for (int i = 0; i < cookTime * 10 + 1; i++) {
+			for (int i = 0; i <= cookTime * 10; i++) {
 				thingToBeCooked.applyHeat();
 			}
 			thingToBeCooked.eat();
