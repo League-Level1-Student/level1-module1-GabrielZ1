@@ -24,13 +24,24 @@ public class Rocket implements GameControlScene {
 	 * the class i.e. public Rocket(){
 	 * 
 	 * In the constructor initialize:
+	 * x = AsteroidsGame.WIDTH / 2;  	y = AsteroidsGame.HEIGHT / 2;  size = 10;
 	 * 
-	 * x = AsteroidsGame.WIDTH / 2 y = AsteroidsGame.HEIGHT / 2 size = 10
+	 * and collisionBox = new Rectangle(x - size / 2, y - size / 2, size, size);
 	 * 
-	 * and
-	 * 
-	 * collisionBox = new Rectangle(x - size / 2, y - size / 2, size, size)
-	 * 
+	 */
+
+	public Rocket() {
+		//no longer being used since I am calling Rocket() with parameters (using constructor in lines 54-64)
+	
+		x = AsteroidsGame.WIDTH / 2;
+		y = AsteroidsGame.HEIGHT / 2;
+		size = 10;
+
+		collisionBox = new Rectangle(x - size / 2, y - size / 2, size, size);
+
+	}
+
+	/*
 	 * With this you can run the game. use WASD to move and SPACE to fire
 	 */
 
@@ -38,8 +49,21 @@ public class Rocket implements GameControlScene {
 	 * 3. If we want to be able to choose where to place the rocket we can create a
 	 * constructor that has parameters for x and y we can do this like any other
 	 * method public Rocket(int x, int y){
-	 * 
-	 * 
+	 */
+
+	public Rocket(int x, int y) {
+		//"this.x" is currently = 0 (haven't initialized it yet, see line 13)
+		this.x = x;
+		//"x" is the variable you input into the parameters when you call the constructor (in this case, 200 (see AsteroidsGame.java lines 22, 58, and 118, where i called Rocket(200,200))
+
+		this.y = y;
+		size = 10;
+
+		collisionBox = new Rectangle(x - size / 2, y - size / 2, size, size);
+
+	}
+
+	/* 
 	 * We also need to initialize our variables again but this time this.x = x
 	 * this.y = y
 	 * 
