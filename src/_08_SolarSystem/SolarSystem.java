@@ -51,77 +51,93 @@ import game_tools.GameControlScene;
  */
 
 public class SolarSystem implements GameControlScene {
-    static final int DISPLAY_WIDTH = 1000;
-    static final int DISPLAY_HEIGHT = DISPLAY_WIDTH;
-    static final int CENTER_X = DISPLAY_WIDTH / 2;
-    static final int CENTER_Y = DISPLAY_HEIGHT / 2;
-    static final int SUN_RADIUS_PIXELS = (1391 / 2) / 20;
-    static final int SUN_DIAMETER_PIXELS = 2 * SUN_RADIUS_PIXELS;
-    static final int MS_PER_DAY = 10;
+	static final int DISPLAY_WIDTH = 1000;
+	static final int DISPLAY_HEIGHT = DISPLAY_WIDTH;
+	static final int CENTER_X = DISPLAY_WIDTH / 2;
+	static final int CENTER_Y = DISPLAY_HEIGHT / 2;
+	static final int SUN_RADIUS_PIXELS = (1391 / 2) / 20;
+	static final int SUN_DIAMETER_PIXELS = 2 * SUN_RADIUS_PIXELS;
+	static final int MS_PER_DAY = 10;
 
-    /*
-     * Member variables
-     */
-    int sunX, sunY;
-    Long startTimeMs = null;
-    Game gameFrame = new Game("Solar System");
-    
-    Planet earth = new Planet(12);
-    
-    public SolarSystem() {
-        gameFrame.setScene(this);
-        gameFrame.start();
-        gameFrame.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-        
-        /*
-         * Add Earth's moon
-         */
-        earth.addMoon();
-        
-        sunX = CENTER_X - SUN_RADIUS_PIXELS;
-        sunY = CENTER_Y - SUN_RADIUS_PIXELS;
-        startTimeMs = System.currentTimeMillis();
-    }
+	/*
+	 * Member variables
+	 */
+	int sunX, sunY;
+	Long startTimeMs = null;
+	Game gameFrame = new Game("Solar System");
 
-    int getDays() {
-        if(startTimeMs != null) {
-            return (int)((System.currentTimeMillis() - startTimeMs) / MS_PER_DAY);
-        }
-        
-        return 0;
-    }
+	Planet earth = new Planet(12);
+	Planet mercury = new Planet(5);
+	Planet venus = new Planet(12);
+	Planet mars = new Planet(7);
+	Planet jupiter = new Planet(143);
+	Planet saturn = new Planet(121);
+	Planet uranus = new Planet(51);
+	Planet neptune = new Planet(50);
 
-    @Override
-    public void draw(Graphics g) {
-        /*
-         * Space
-         */
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-        
-        /*
-         * Days
-         */
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Times New Roman", Font.PLAIN, 32));
-        g.drawString("Days: " + getDays(), 0, 50);
-        
-        /*
-         * Sun
-         */
-        g.setColor(Color.YELLOW);
-        g.fillOval(sunX, sunY, SUN_DIAMETER_PIXELS, SUN_DIAMETER_PIXELS);
-        
-        int numDays = getDays();
-        
-        /*
-         * Add planets here
-         */
-        earth.draw(g, numDays);
-    }
-    
-    @Override
-    public void keyPressed(KeyEvent e) {
-        
-    }
+
+	public SolarSystem() {
+		gameFrame.setScene(this);
+		gameFrame.start();
+		gameFrame.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+
+		/*
+		 * Add Earth's moon
+		 */
+		earth.addMoon();
+
+		sunX = CENTER_X - SUN_RADIUS_PIXELS;
+		sunY = CENTER_Y - SUN_RADIUS_PIXELS;
+		startTimeMs = System.currentTimeMillis();
+	}
+
+	int getDays() {
+		if(startTimeMs != null) {
+			return (int)((System.currentTimeMillis() - startTimeMs) / MS_PER_DAY);
+		}
+
+		return 0;
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		/*
+		 * Space
+		 */
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+
+		/*
+		 * Days
+		 */
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Times New Roman", Font.PLAIN, 32));
+		g.drawString("Days: " + getDays(), 0, 50);
+
+		/*
+		 * Sun
+		 */
+		g.setColor(Color.YELLOW);
+		g.fillOval(sunX, sunY, SUN_DIAMETER_PIXELS, SUN_DIAMETER_PIXELS);
+
+		int numDays = getDays();
+
+		/*
+		 * Add planets here
+		 */
+		earth.draw(g, numDays, Color.BLUE, 1496/100, 365);
+		mercury.draw(g, numDays, Color.DARK_GRAY, 579/100, 88);	
+		venus.draw(g, numDays, Color.ORANGE, 1082/100, 225);
+		mars.draw(g, numDays, Color.RED, 2279/100, 687);
+		jupiter.draw(g, numDays, Color.ORANGE, 7786/100, 4331);
+		saturn.draw(g, numDays, Color.YELLOW, 14335/100, 10747);
+		uranus.draw(g, numDays, Color.GREEN, 28725/100, 30589);
+		neptune.draw(g, numDays, Color.BLUE, 44951/100, 59800);
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+
+	}
 }
