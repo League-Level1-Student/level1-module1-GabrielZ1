@@ -14,16 +14,20 @@ public class Planet {
 	int avgDistFromSun, orbitalPeriod;
 	Color planetColor;
 
-	public Planet(int diameterPixels) {
+	public Planet(int diameterPixels, Color planetColor, int avgDistFromSun, int orbitalPeriod, int numberMoons) {
 		this.diameter = diameterPixels;
+		this.planetColor = planetColor;
+		this.avgDistFromSun = avgDistFromSun;
+		this.orbitalPeriod = orbitalPeriod;
+
+		for(int i=0; i<numberMoons; i++) {
+			addMoon();	
+		}
+
 	}
 
-	public void draw(Graphics g, int numDays, Color planetColor, int avgDistFromSun, int orbitalPeriod) {
-			this.planetColor = planetColor;
-			this.avgDistFromSun = avgDistFromSun;
-			this.orbitalPeriod = orbitalPeriod;
-	
-			
+	public void draw(Graphics g, int numDays) {
+
 		/*
 		 * Update position
 		 */
